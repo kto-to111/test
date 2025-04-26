@@ -90,53 +90,64 @@ function UploadPageCW3() {
     loadS();
     const fightLog = document.getElementById('fightLog');
     let uwuFightLog = document.getElementById('uwu-Compacted-Fight-Log');
+
     if (uwuFightLog){
     //   console.warn('uwu есть')
         uwuFightLog.style.color = settings.colorText;
+
+        const observer = new MutationObserver((mutations, observer) => {
+            const element = document.getElementById('uwu-team-settings'); // тут твой селектор
+            if (element) {
+                element.style.color = settings.colorText; // пример изменения стиля
+                observer.disconnect(); // как только нашли - отключаем слежение
+            }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
     }
     else {
     //    console.warn('uwu нет')
         fightLog.style.color = settings.colorText;
     }
     // ====================================================================================================================
-    //             ЗВУК БЛОКА афигеть
+    //             ЗВУК БЛОКА афигеть идите нахй
     // ====================================================================================================================
 
-    let blockKey = false;
-    function setupImageChangeSound(imgElement, soundElement, targetSrc) {
-        const observer = new MutationObserver((mutationsList) => {
-            for (let mutation of mutationsList) {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
-                    if (imgElement.src.includes(targetSrc)) {
-                        blockKey = true;
-                        music.soundPlay( soundElement, settings.volume);
-                    }
-                }
-            }
-        });
+   // let blockKey = false;
+  //  function setupImageChangeSound(imgElement, soundElement, targetSrc) {
+    //    const observer = new MutationObserver((mutationsList) => {
+      //      for (let mutation of mutationsList) {
+     //           if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
+     //               if (imgElement.src.includes(targetSrc)) {
+      //                  blockKey = true;
+     //                   music.soundPlay( soundElement, settings.volume);
+   //                 }
+    //            }
+    //        }
+    //    });
 
-        observer.observe(imgElement, {
-            attributes: true,
-            attributeFilter: ['src']
-        });
-    }
+    //    observer.observe(imgElement, {
+   //         attributes: true,
+   //         attributeFilter: ['src']
+   // }
 
-    const block = document.getElementById('block');
-    setupImageChangeSound(block, "blockSound", 'symbole/lock.png');
-    document.addEventListener(
-        "keyup",
-        (event) => {
-            if (event.key == 'k' || 'л') {
-                setTimeout(() => {
-                    const block = document.getElementById("block");
-                    if (blockKey) {
-                        blockKey = false;
-                        music.soundPlay("unblockSound", settings.volume);
-                    }
-                }, 100);
-            }
-        },
-        false,
-    );
+ //   const block = document.getElementById('block');
+ //   setupImageChangeSound(block, "blockSound", 'symbole/lock.png');
+  //  document.addEventListener(
+   //     "keyup",
+   //     (event) => {
+    //        if (event.key == 'k' || 'л') {
+    ///               const block = document.getElementById("block");
+     //               if (blockKey) {
+      //  //                blockKey = false;
+         //               music.soundPlay("unblockSound", settings.volume);
+           //         }
+          //      }, 100);
+           // }
+  //      },
+   //     false,
+  //  );
+
+    document.getElementById("error").remove();
 
 }
