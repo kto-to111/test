@@ -5,7 +5,7 @@
 // @description  try to take over the world!
 // @author       cherr
 // @match        https://*.catwar.net/*
-// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @icon         https://i.ibb.co/wm9y1QM/41441dbde58b.png
 // @grant        none
 // ==/UserScript==
 'use strict';
@@ -113,41 +113,65 @@ function UploadPageCW3() {
     //             ЗВУК БЛОКА афигеть идите нахй
     // ====================================================================================================================
 
-   // let blockKey = false;
-  //  function setupImageChangeSound(imgElement, soundElement, targetSrc) {
-    //    const observer = new MutationObserver((mutationsList) => {
-      //      for (let mutation of mutationsList) {
-     //           if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
-     //               if (imgElement.src.includes(targetSrc)) {
-      //                  blockKey = true;
-     //                   music.soundPlay( soundElement, settings.volume);
-   //                 }
-    //            }
-    //        }
-    //    });
+    let blockKey = false;
+    function setupImageChangeSound(imgElement, soundElement, targetSrc) {
+        const observer = new MutationObserver((mutationsList) => {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
+                    if (imgElement.src.includes(targetSrc)) {
+                        blockKey = true;
+                        music.soundPlay( soundElement, settings.volume);
+                    }
+                }
+            }
+        });
 
-    //    observer.observe(imgElement, {
-   //         attributes: true,
-   //         attributeFilter: ['src']
-   // }
+        observer.observe(imgElement, {
+            attributes: true,
+            attributeFilter: ['src']
+        });
+    }
 
- //   const block = document.getElementById('block');
- //   setupImageChangeSound(block, "blockSound", 'symbole/lock.png');
-  //  document.addEventListener(
-   //     "keyup",
-   //     (event) => {
-    //        if (event.key == 'k' || 'л') {
-    ///               const block = document.getElementById("block");
-     //               if (blockKey) {
-      //  //                blockKey = false;
-         //               music.soundPlay("unblockSound", settings.volume);
-           //         }
-          //      }, 100);
-           // }
-  //      },
-   //     false,
-  //  );
+    const block = document.getElementById('block');
+    setupImageChangeSound(block, "blockSound", 'symbole/lock.png');
+    document.addEventListener(
+        "keyup",
+        (event) => {
+            if (event.key == 'k' || 'л') {
+                setTimeout(() => {
+                    const block = document.getElementById("block");
+                    if (blockKey) {
+                        blockKey = false;
+                        music.soundPlay("unblockSound", settings.volume);
+                    }
+                }, 100);
+            }
+        },
+        false,
+    );
 
-    document.getElementById("error").remove();
+    const errorElement = document.getElementById('error');
+
+    // Список фраз, при которых нужно скрывать элемент
+    const forbiddenTexts = [
+        "перехода с одного места в другое",
+        "Я слышу",
+        "передвижение возможно",
+    ];
+    function checkText() {
+        const currentText = errorElement.textContent.trim();
+
+        // Проверяем: содержит ли текст хоть одну запрещённую фразу
+        const isForbidden = forbiddenTexts.some(forbidden => currentText.includes(forbidden));
+
+        if (isForbidden) {
+            errorElement.style.display = 'none'; // если найден запрещённый текст, скрываем
+        } else {
+            errorElement.style.display = 'block'; // если всё ок, показываем
+        }
+    }
+    const observer = new MutationObserver(checkText);
+    observer.observe(errorElement, { childList: true, subtree: true });
+
 
 }
