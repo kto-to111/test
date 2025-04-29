@@ -86,8 +86,16 @@ function UploadPageConf() {
 
 }
 
+function applyTheme() {
+    const newStyle = document.createElement("style");
+    newStyle.innerHTML = // css
+        ` .hotkey { background-color: #ffffff !important; } `;
+    document.head.appendChild(newStyle);
+}
+
 function UploadPageCW3() {
     loadS();
+    applyTheme();
     const fightLog = document.getElementById('fightLog');
     let uwuFightLog = document.getElementById('uwu-Compacted-Fight-Log');
 
