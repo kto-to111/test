@@ -10,6 +10,7 @@
 // @updateURL    https://github.com/kto-to111/test/raw/refs/heads/main/ChrCode.user.js
 // @downloadURL  https://github.com/kto-to111/test/raw/refs/heads/main/ChrCode.user.js
 // ==/UserScript==
+//ss
 'use strict';
 
 const mydefaultsettings = {
