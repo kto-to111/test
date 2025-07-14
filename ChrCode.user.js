@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ChrCode
 // @namespace    http://tampermonkey.net/
-// @version      0.0.2
+// @version      0.0.20
 // @description  try to take over the world!
 // @author       notme
 // @match        https://*.catwar.net/*
