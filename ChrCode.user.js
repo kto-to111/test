@@ -7,6 +7,8 @@
 // @match        https://*.catwar.net/*
 // @icon         https://i.ibb.co/wm9y1QM/41441dbde58b.png
 // @grant        none
+// @updateURL    https://github.com/kto-to111/test/raw/refs/heads/main/ChrCode.user.js
+// @downloadURL  https://github.com/kto-to111/test/raw/refs/heads/main/ChrCode.user.js
 // ==/UserScript==
 'use strict';
 
