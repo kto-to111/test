@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      2025-04-16
 // @description  try to take over the world!
-// @author       cherr
+// @author       me
 // @match        https://*.catwar.net/*
 // @icon         https://i.ibb.co/wm9y1QM/41441dbde58b.png
 // @grant        none
