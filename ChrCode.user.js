@@ -1,16 +1,15 @@
 // ==UserScript==
 // @name         ChrCode
 // @namespace    http://tampermonkey.net/
-// @version      0.0.13
+// @version      0.0.14
 // @description  try to take over the world!
-// @author       me
+// @author       not me
 // @match        https://*.catwar.net/*
 // @icon         https://i.ibb.co/wm9y1QM/41441dbde58b.png
 // @grant        none
 // @updateURL    https://github.com/kto-to111/test/raw/refs/heads/main/ChrCode.user.js
 // @downloadURL  https://github.com/kto-to111/test/raw/refs/heads/main/ChrCode.user.js
 // ==/UserScript==
-gg
 'use strict';
 
 const mydefaultsettings = {
